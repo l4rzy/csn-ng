@@ -1,5 +1,5 @@
 # Description
-* A shitty CLI tool for searching (and maybe more feature) tool for chiasenhac.vn
+A shitty CLI tool for searching (and maybe more) on chiasenhac.vn
 
 ## Build
 
