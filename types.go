@@ -12,7 +12,7 @@ const (
 )
 
 const (
-	CSN_HOME = "https://chiasenhac.com"
+	CSN_HOME = "https://chiasenhac.vn"
 )
 
 type CSNMusic struct {

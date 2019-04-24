@@ -67,7 +67,11 @@ func main() {
 	}
 
 	var keyword = flag.Args()[0]
-	result, _ := search(opt, keyword, *s_limit)
+	result, err := search(opt, keyword, *s_limit)
+	if err != nil {
+		fmt.Printf("Could not get data: %v\n", err)
+		os.Exit(-1)
+	}
 
 	for i, r := range result {
 		fmt.Printf("[%d] ", i+1)
