@@ -66,6 +66,11 @@ func main() {
 		os.Exit(-1)
 	}
 
+	if opt == 0 {
+		showHelp()
+		os.Exit(-1)
+	}
+
 	var keyword = flag.Args()[0]
 	result, err := search(opt, keyword, *s_limit)
 	if err != nil {

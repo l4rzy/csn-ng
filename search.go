@@ -43,6 +43,11 @@ func search(opt int, keyword string, limit int) ([]CSNObject, error) {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != 200 {
+		err = errors.New("Responsed status code is not ok")
+		return nil, err
+	}
+
 	// read to body
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
