@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-    keyword = os.Args[1]
+    keyword := os.Args[1]
     result, err := csn.SearchNew(csn.OP_MUSIC, keyword, 10)
     if err != nil {
         fmt.Printf("Could not get data: %v\n", err)
@@ -41,8 +41,9 @@ func main() {
 ```
 
 * As a commandline tool
+Make sure that `$GOPATH/bin` is in your `$PATH`
 ```sh
-$ ./csn-ng -album -music love
+$ csn -album -music love
 ```
 The result should look like this
 ![test](test.png)
