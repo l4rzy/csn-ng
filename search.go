@@ -10,8 +10,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"net/http"
-	"time"
 )
 
 func (m CSNMusicSearch) Print() {

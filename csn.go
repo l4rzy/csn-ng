@@ -5,6 +5,11 @@
 
 package csn
 
+import (
+	"net/http"
+	"time"
+)
+
 const (
 	VER_MAJOR = 0
 	VER_MINOR = 1
