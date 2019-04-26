@@ -29,8 +29,10 @@ const (
 )
 
 const (
-	CSN_HOME   = "https://chiasenhac.vn"
-	SEARCH_FMT = "https://chiasenhac.vn/search/real?q=%s&type=json&rows=%d&view_all=true"
+	CSN_HOME       = "https://chiasenhac.vn"
+	SEARCH_NEW_FMT = "https://chiasenhac.vn/search/real?q=%v&type=json&rows=%v&view_all=true"
+	SEARCH_FMT     = "http://search.chiasenhac.vn/api/search.php?s=%v&code=csn22052018&per_page=%v"
+	MUSIC_INFO_FMT = "http://old.chiasenhac.vn/api/listen.php?code=csn22052018&return=json&m=%v"
 )
 
 func init() {

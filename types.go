@@ -24,15 +24,38 @@ type CSNMusicHot struct {
 	CoverImg        string `json:"cover_img"`
 }
 
-type CSNMusicSearch struct {
-	CSNMusicBase
+// new search api that bases on the
+// new site's xhr
+type CSNMusicSearchNew struct {
+	MusicDownloads   int    `json:"music_downloads"`
+	MusicID          int    `json:"music_id"`
+	MusicTitle       string `json:"music_title"`
+	MusicArtist      string `json:"music_artist"`
 	MusicBitrate     string `json:"music_bitrate"`
 	MusicBitrateHTML string `json:"music_bitrate_html"`
 	MusicLink        string `json:"music_link"`
+	CatID            int    `json:"cat_id"`
 	MusicListen      int    `json:"music_listen"`
 	MusicFilename    string `json:"music_filename"`
 	MusicCover       string `json:"music_cover"`
-	MusicDownloads   int    `json:"music_downloads"`
+	MusicTitleURL    string `json:"music_title_url"`
+}
+
+type CSNMusicSearch struct {
+	CSNMusicBase
+	ID             int    `json:"id"`
+	Thumbnail      string `json:"thumbnail"`
+	Preview        string `json:"preview"`
+	CatLevel       string `json:"cat_level"`
+	MusicComposer  string `json:"music_composer"`
+	MusicAlbum     string `json:"music_album"`
+	MusicYear      string `json:"music_year"`
+	MusicDownloads string `json:"music_downloads"`
+	MusicBitrate   string `json:"music_bitrate"`
+	MusicLength    string `json:"music_length"`
+	MusicWidth     string `json:"music_width"`
+	MusicHeight    string `json:"music_height"`
+	CoverImg       string `json:"cover_img"`
 }
 
 type CSNMusicAlbum struct {
@@ -79,7 +102,7 @@ type CSNMusicInfo struct {
 	FileM4AURL            string `json:"file_m4a_url"`
 	FileLosslessURL       string `json:"file_lossless_url"`
 	FullURL               string `json:"full_url"`
-	MusicGenre            string `json:"music_genre"`
+	MusicGenre            int `json:"music_genre"`
 }
 
 type CSNVideoSearch struct {
@@ -115,13 +138,17 @@ type CSNAlbumSearch struct {
 	AlbumCover      string      `json:"album_cover"`
 }
 
-type CSNSearchResp []struct {
+type CSNSearchResp struct {
+	MusicList []CSNMusicSearch `json:"music_list"`
+}
+
+type CSNSearchNewResp []struct {
 	Q     string `json:"q"`
 	Music struct {
-		Data     []CSNMusicSearch `json:"data"`
-		Rows     string           `json:"rows"`
-		Page     int              `json:"page"`
-		RowTotal int              `json:"row_total"`
+		Data     []CSNMusicSearchNew `json:"data"`
+		Rows     string              `json:"rows"`
+		Page     int                 `json:"page"`
+		RowTotal int                 `json:"row_total"`
 	} `json:"music"`
 	MusicPlayback struct {
 		Data     []interface{} `json:"data"`
@@ -149,10 +176,10 @@ type CSNSearchResp []struct {
 	} `json:"album"`
 }
 
-type MusicInfoResp struct {
-	MusicInfo CSNMusicInfo `json:"music_info"`
+type CSNMusicInfoResp struct {
+	MusicInfo CSNMusicInfo    `json:"music_info"`
 	TrackList []CSNMusicAlbum `json:"track_list"`
-	Related struct {
+	Related   struct {
 		MusicTotal int `json:"music_total"`
 		MusicList  []struct {
 			MusicID         string `json:"music_id"`
@@ -219,8 +246,11 @@ type DlAble struct {
 // interface
 type CSNObjectSearch interface {
 	Print()
+	GetInfo() (CSNMusicInfo, error)
+	//GetID() (int, error)
 }
 
-type CSNObject interface {
-	Print()
+type CSNSearchResult struct {
+	kind int
+
 }

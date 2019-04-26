@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2019 l4rzy
+ * MIT License
+ */
+
 package main
 
 import (
@@ -6,8 +11,6 @@ import (
 	"os"
 	csn "github.com/l4rzy/csn-ng"
 )
-
-
 
 func showAbout() {
 	fmt.Printf(`csn - do things with chiasenhac.vn
@@ -35,6 +38,7 @@ func main() {
 		s_video  = flag.Bool("video", false, "search for video")
 		s_artist = flag.Bool("artist", false, "search for artist")
 		s_album  = flag.Bool("album", false, "search for album")
+		s_link   = flag.Bool("link", false, "also get the download links of music")
 		s_limit  = flag.Int("limit", 5, "limit search result on each category")
 	)
 
@@ -47,16 +51,16 @@ func main() {
 	// construct option
 	var opt = 0
 	if *s_music {
-		opt |= OP_MUSIC
+		opt |= csn.OP_MUSIC
 	}
 	if *s_video {
-		opt |= OP_VIDEO
+		opt |= csn.OP_VIDEO
 	}
 	if *s_artist {
-		opt |= OP_ARTIST
+		opt |= csn.OP_ARTIST
 	}
 	if *s_album {
-		opt |= OP_ALBUM
+		opt |= csn.OP_ALBUM
 	}
 
 	if len(flag.Args()) == 0 {
@@ -70,15 +74,19 @@ func main() {
 	}
 
 	var keyword = flag.Args()[0]
-	result, err := csn.Search(opt, keyword, *s_limit)
+	result, err := csn.SearchNew(opt, keyword, *s_limit)
 	if err != nil {
 		fmt.Printf("Could not get data: %v\n", err)
 		os.Exit(-1)
 	}
 
-	for i, r := range result {
-		fmt.Printf("[%d] ", i+1)
+	for _, r := range result {
 		r.Print()
+		if *s_link {
+			info, _ := r.GetInfo()
+			fmt.Printf("[128] %v\n", info.FileURL)
+			fmt.Printf("[Lossless] %v\n", info.FileLosslessURL)
+		}
+		fmt.Println("---")
 	}
-
 }
