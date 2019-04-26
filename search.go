@@ -1,4 +1,9 @@
-package main
+/*
+ * Copyright (C) 2019 l4rzy
+ * MIT License
+ */
+
+package csn
 
 import (
 	"encoding/json"
@@ -9,17 +14,20 @@ import (
 	"time"
 )
 
-var (
-	csn_client *http.Client
-	err        error
-)
+func (m CSNMusicSearch) Print() {
+	fmt.Printf("%v\n", m.MusicLink)
+}
 
-const (
-	search_fmt = "https://chiasenhac.vn/search/real?q=%s&type=json&rows=%d&view_all=true"
-)
+func (v CSNVideoSearch) Print() {
+	fmt.Printf("%v\n", v.VideoLink)
+}
 
-func init() {
-	csn_client = &http.Client{Timeout: 10 * time.Second}
+func (a CSNArtistSearch) Print() {
+	fmt.Printf("%s%v\n", CSN_HOME, a.ArtistLink)
+}
+
+func (a CSNAlbumSearch) Print() {
+	fmt.Printf("%s%v\n", CSN_HOME, a.AlbumLink)
 }
 
 func buildSearchUrl(keyword string, limit int) (string, error) {
@@ -27,10 +35,10 @@ func buildSearchUrl(keyword string, limit int) (string, error) {
 		err := errors.New("Wrong search input")
 		return "", err
 	}
-	return fmt.Sprintf(search_fmt, keyword, limit), nil
+	return fmt.Sprintf(SEARCH_FMT, keyword, limit), nil
 }
 
-func search(opt int, keyword string, limit int) ([]CSNObject, error) {
+func Search(opt int, keyword string, limit int) ([]CSNObjectSearch, error) {
 	surl, err := buildSearchUrl(keyword, limit)
 	if err != nil {
 		return nil, err
@@ -55,7 +63,7 @@ func search(opt int, keyword string, limit int) ([]CSNObject, error) {
 	}
 
 	// parse json
-	var result RespJson
+	var result CSNSearchResp
 	err = json.Unmarshal(body, &result)
 
 	if err != nil {
@@ -64,7 +72,7 @@ func search(opt int, keyword string, limit int) ([]CSNObject, error) {
 	var data = result[0]
 
 	// return result as user asked
-	var ret []CSNObject
+	var ret []CSNObjectSearch
 	if opt&OP_MUSIC != 0 {
 		for i := 0; i < len(data.Music.Data); i++ {
 			ret = append(ret, data.Music.Data[i])
