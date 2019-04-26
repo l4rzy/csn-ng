@@ -94,7 +94,7 @@ func SearchNew(opt int, keyword string, limit int) ([]CSNObjectSearch, error) {
 	return ret, nil
 }
 
-func Search(keyword string, limit int) ([]CSNObjectSearch, error){
+func Search(keyword string, limit int) ([]CSNObjectSearch, error) {
 	if limit <= 0 || keyword == "" {
 		err := errors.New("Wrong search input")
 		return nil, err

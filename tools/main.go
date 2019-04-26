@@ -8,8 +8,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os"
 	csn "github.com/l4rzy/csn-ng"
+	"os"
 )
 
 func showAbout() {
@@ -84,9 +84,11 @@ func main() {
 		r.Print()
 		if *s_link {
 			info, _ := r.GetInfo()
-			fmt.Printf("[128] %v\n", info.FileURL)
-			fmt.Printf("[Lossless] %v\n", info.FileLosslessURL)
+			fmt.Printf("\t[128] %v\n", info.FileURL)
+			fmt.Printf("\t[320] %v\n", info.File320URL)
+			fmt.Printf("\t[500] %v\n", info.FileM4AURL)
+			fmt.Printf("\t[Lossless] %v\n", info.FileLosslessURL)
 		}
-		fmt.Println("---")
+		fmt.Println("")
 	}
 }

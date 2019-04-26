@@ -6,10 +6,10 @@
 package csn
 
 import (
-	"fmt"
 	"encoding/json"
-	"io/ioutil"
 	"errors"
+	"fmt"
+	"io/ioutil"
 )
 
 func getInfo(id interface{}) (CSNMusicInfo, error) {
@@ -44,11 +44,11 @@ func getInfo(id interface{}) (CSNMusicInfo, error) {
 	return ret.MusicInfo, nil
 }
 
-func (m CSNMusicSearch)GetInfo() (CSNMusicInfo, error) {
+func (m CSNMusicSearch) GetInfo() (CSNMusicInfo, error) {
 	return getInfo(m.MusicID)
 }
 
-func (m CSNMusicSearchNew)GetInfo() (CSNMusicInfo, error) {
+func (m CSNMusicSearchNew) GetInfo() (CSNMusicInfo, error) {
 	return getInfo(m.MusicID)
 }
 
