@@ -4,17 +4,15 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	csn "github.com/l4rzy/csn-ng"
 )
 
-const (
-	VER_MAJ = 0
-	VER_MIN = 1
-)
+
 
 func showAbout() {
 	fmt.Printf(`csn - do things with chiasenhac.vn
-version: %d.%d
-`, VER_MAJ, VER_MIN)
+version: %d.%d.%d
+`, csn.VER_MAJOR, csn.VER_MINOR, csn.VER_PATCH)
 	os.Exit(0)
 }
 
@@ -72,7 +70,7 @@ func main() {
 	}
 
 	var keyword = flag.Args()[0]
-	result, err := search(opt, keyword, *s_limit)
+	result, err := csn.Search(opt, keyword, *s_limit)
 	if err != nil {
 		fmt.Printf("Could not get data: %v\n", err)
 		os.Exit(-1)
@@ -80,7 +78,7 @@ func main() {
 
 	for i, r := range result {
 		fmt.Printf("[%d] ", i+1)
-		r.print()
+		r.Print()
 	}
 
 }
