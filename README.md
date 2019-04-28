@@ -41,6 +41,7 @@ func main() {
 ```
 
 * As a commandline tool
+
 Make sure that `$GOPATH/bin` is in your `$PATH`
 ```sh
 $ csn -album -music love
