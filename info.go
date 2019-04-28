@@ -44,6 +44,10 @@ func getInfo(id interface{}) (CSNMusicInfo, error) {
 	return ret.MusicInfo, nil
 }
 
+func GetInfoUrl(url string) (CSNMusicInfo, error) {
+	return CSNMusicInfo{}, nil
+}
+
 func (m CSNMusicSearch) GetInfo() (CSNMusicInfo, error) {
 	return getInfo(m.MusicID)
 }

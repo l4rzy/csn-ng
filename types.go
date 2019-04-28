@@ -243,6 +243,13 @@ type DlAble struct {
 	Link map[string]string
 }
 
+type CSNUrlInfo struct {
+	Url string
+	Kind string
+	Category int
+	UrlName string
+}
+
 // interface
 type CSNObjectSearch interface {
 	Print()
