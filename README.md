@@ -44,7 +44,7 @@ func main() {
 
 Make sure that `$GOPATH/bin` is in your `$PATH`
 ```sh
-$ csn -album -music love
+$ csn search -link -limit 3 -music 'linkin park'
 ```
 The result should look like this
 ![test](test.png)
