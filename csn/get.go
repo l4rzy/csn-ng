@@ -17,8 +17,8 @@ Synopsis:
     %[1]s get [flags] [input]
 
 Available flags:
-    --qual [quality]    - max quality to get (default to 320)
-                          either '32', '128', '320', '500' or 'lossless'
+    --qual [quality]    - max quality to print out (default to 'all')
+                          either '32', '128', '320', '500', 'lossless' or 'all'
     --help              - show this help
 
 Examples:

@@ -43,10 +43,7 @@ func doSearch(opt int, keyword string, limit int, link bool) {
 		r.Print()
 		if link {
 			info, _ := r.GetInfo()
-			fmt.Printf("  [128] %v\n", info.FileURL)
-			fmt.Printf("  [320] %v\n", info.File320URL)
-			fmt.Printf("  [500] %v\n", info.FileM4AURL)
-			fmt.Printf("  [LLs] %v\n", info.FileLosslessURL)
+			info.PrintLinks(csn.MUSIC_QUAL_ALL)
 		}
 		fmt.Println("")
 	}

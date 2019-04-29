@@ -244,10 +244,10 @@ type DlAble struct {
 }
 
 type CSNUrlInfo struct {
-	Url string
-	Kind string
+	Url      string
+	Kind     string
 	Category int
-	UrlName string
+	UrlName  string
 }
 
 // interface

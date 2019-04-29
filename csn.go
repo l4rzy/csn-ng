@@ -21,6 +21,7 @@ var (
 	err        error
 )
 
+// search options
 const (
 	OP_MUSIC  = 1 << 1
 	OP_VIDEO  = 1 << 2
@@ -28,11 +29,22 @@ const (
 	OP_ALBUM  = 1 << 4
 )
 
+// CSNUrlInfo's kinds
 const (
 	URL_MUSIC = iota
 	URL_VIDEO
 	URL_ALBUM
 	URL_PLAYLIST
+)
+
+// music quality
+const (
+	MUSIC_QUAL_32   = 1 << 1
+	MUSIC_QUAL_128  = 1 << 2
+	MUSIC_QUAL_320  = 1 << 3
+	MUSIC_QUAL_500  = 1 << 4
+	MUSIC_QUAL_1000 = 1 << 5
+	MUSIC_QUAL_ALL  = 62
 )
 
 const (
