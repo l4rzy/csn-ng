@@ -19,9 +19,9 @@ Synopsis:
 Available flags:
     --music         - search for music (I mean, songs)
     --video         - search for videos
-    --artist        - search for videos
+    --artist        - search for artists
     --album         - search for albums
-    --link          - also get download links for each result
+    --link          - also get download links for each result, in case of songs
     --limit [int]   - limit search results for each entry (5 by default)
     --help          - show this help
 
