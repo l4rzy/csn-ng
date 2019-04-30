@@ -13,7 +13,8 @@ import (
 )
 
 func (mi CSNMusicInfo) PrintLinks(opt int) {
-	if opt&MUSIC_QUAL_32 != 0 {
+	if opt&MUSIC_QUAL_32 != 0 &&
+        mi.File32URL != "" {
 		fmt.Printf("[ 32] %v\n", mi.File32URL)
 	}
 	if opt&MUSIC_QUAL_128 != 0 &&
