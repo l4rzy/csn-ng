@@ -16,7 +16,7 @@ import (
 func showAbout() {
 	fmt.Printf(`csn - do things with chiasenhac.vn
 runtime: %s
-version: %d.%d.%d
+version: %v.%v.%v
 `, runtime.Version(), csn.VER_MAJOR, csn.VER_MINOR, csn.VER_PATCH)
 	os.Exit(0)
 }
@@ -138,9 +138,15 @@ func main() {
 
 	switch os.Args[1] {
 	case "search":
+		if len(os.Args) == 2 {
+			helpSearch()
+		}
 		sub_search.Parse(os.Args[2:])
 		cmdSearch()
 	case "get":
+		if len(os.Args) == 2 {
+			helpGet()
+		}
 		sub_get.Parse(os.Args[2:])
 		cmdGet()
 	default:
