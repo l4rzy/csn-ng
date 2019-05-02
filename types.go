@@ -102,7 +102,7 @@ type CSNMusicInfo struct {
 	FileM4AURL            string `json:"file_m4a_url"`
 	FileLosslessURL       string `json:"file_lossless_url"`
 	FullURL               string `json:"full_url"`
-	MusicGenre            int    `json:"music_genre"`
+	MusicGenre            string    `json:"music_genre"`
 }
 
 type CSNVideoSearch struct {
@@ -245,14 +245,15 @@ type DlAble struct {
 
 type CSNUrlInfo struct {
 	Url      string
-	Kind     string
-	Category int
+	Kind     int
+	Category string
 	UrlName  string
 }
 
 // interface
 type CSNObjectSearch interface {
 	Print()
+	GetLink() string
+	GetID() interface{}
 	GetInfo() (CSNMusicInfo, error)
-	//GetID() (int, error)
 }

@@ -80,16 +80,16 @@ func main() {
 		// construct option
 		var opt = 0
 		if *s_music {
-			opt |= csn.OP_MUSIC
+			opt |= csn.KIND_MUSIC
 		}
 		if *s_video {
-			opt |= csn.OP_VIDEO
+			opt |= csn.KIND_VIDEO
 		}
 		if *s_artist {
-			opt |= csn.OP_ARTIST
+			opt |= csn.KIND_ARTIST
 		}
 		if *s_album {
-			opt |= csn.OP_ALBUM
+			opt |= csn.KIND_ALBUM
 		}
 
 		if opt == 0 {

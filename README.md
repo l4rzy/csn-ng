@@ -21,7 +21,7 @@ import (
 
 func main() {
     keyword := os.Args[1]
-    result, err := csn.SearchNew(csn.OP_MUSIC, keyword, 10)
+    result, err := csn.SearchNew(csn.KIND_MUSIC, keyword, 10)
     if err != nil {
         fmt.Printf("Could not get data: %v\n", err)
         os.Exit(-1)

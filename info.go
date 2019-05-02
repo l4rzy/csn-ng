@@ -67,10 +67,6 @@ func getInfo(id interface{}) (CSNMusicInfo, error) {
 	return ret.MusicInfo, nil
 }
 
-func GetInfoUrl(url string) (CSNMusicInfo, error) {
-	return CSNMusicInfo{}, nil
-}
-
 func (m CSNMusicSearch) GetInfo() (CSNMusicInfo, error) {
 	return getInfo(m.MusicID)
 }
@@ -90,3 +86,45 @@ func (a CSNArtistSearch) GetInfo() (CSNMusicInfo, error) {
 func (a CSNAlbumSearch) GetInfo() (CSNMusicInfo, error) {
 	return CSNMusicInfo{}, nil
 }
+
+
+func (m CSNMusicSearch) GetLink() string {
+	return ""
+}
+
+func (m CSNMusicSearchNew) GetLink() string {
+	return m.MusicLink
+}
+
+func (m CSNVideoSearch) GetLink() string {
+	return m.VideoLink
+}
+
+func (m CSNArtistSearch) GetLink() string {
+	return m.ArtistLink
+}
+
+func (m CSNAlbumSearch) GetLink() string {
+	return m.AlbumLink
+}
+
+func (m CSNMusicSearch) GetID() interface{} {
+	return m.MusicID
+}
+
+func (m CSNMusicSearchNew) GetID() interface{} {
+	return m.MusicID
+}
+
+func (m CSNVideoSearch) GetID() interface{} {
+	return m.VideoID
+}
+
+func (m CSNArtistSearch) GetID() interface{} {
+	return m.ArtistID
+}
+
+func (m CSNAlbumSearch) GetID() interface{} {
+	return m.AlbumID
+}
+

@@ -23,18 +23,11 @@ var (
 
 // search options
 const (
-	OP_MUSIC  = 1 << 1
-	OP_VIDEO  = 1 << 2
-	OP_ARTIST = 1 << 3
-	OP_ALBUM  = 1 << 4
-)
-
-// CSNUrlInfo's kinds
-const (
-	URL_MUSIC = iota
-	URL_VIDEO
-	URL_ALBUM
-	URL_PLAYLIST
+	KIND_MUSIC  = 1 << 1
+	KIND_VIDEO  = 1 << 2
+	KIND_ARTIST = 1 << 3
+	KIND_ALBUM  = 1 << 4
+	KIND_PLAYLIST = 1 << 5
 )
 
 // music quality

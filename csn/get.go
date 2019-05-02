@@ -29,5 +29,11 @@ Examples:
 }
 
 func doGet(qual string, target string) {
-	csn.ExtractUrlInfo(target)
+	info, err := csn.GetInfoUrl(target)
+
+	if err != nil {
+		fmt.Println(err)
+		fmt.Println("Also see https://github.com/l4rzy/csn-ng/issues/1")
+	}
+	info.PrintLinks(csn.MUSIC_QUAL_ALL)
 }

@@ -70,22 +70,22 @@ func SearchNew(opt int, keyword string, limit int) ([]CSNObjectSearch, error) {
 	// return result as user asked
 	var ret []CSNObjectSearch
 
-	if opt&OP_MUSIC != 0 {
+	if opt&KIND_MUSIC != 0 {
 		for i := 0; i < len(data.Music.Data); i++ {
 			ret = append(ret, data.Music.Data[i])
 		}
 	}
-	if opt&OP_VIDEO != 0 {
+	if opt&KIND_VIDEO != 0 {
 		for i := 0; i < len(data.Video.Data); i++ {
 			ret = append(ret, data.Video.Data[i])
 		}
 	}
-	if opt&OP_ARTIST != 0 {
+	if opt&KIND_ARTIST != 0 {
 		for i := 0; i < len(data.Artist.Data); i++ {
 			ret = append(ret, data.Artist.Data[i])
 		}
 	}
-	if opt&OP_ALBUM != 0 {
+	if opt&KIND_ALBUM != 0 {
 		for i := 0; i < len(data.Album.Data); i++ {
 			ret = append(ret, data.Album.Data[i])
 		}
