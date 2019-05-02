@@ -12,27 +12,51 @@ import (
 	"io/ioutil"
 )
 
-func (mi CSNMusicInfo) PrintLinks(opt int) {
-	if opt&MUSIC_QUAL_32 != 0 &&
-        mi.File32URL != "" {
-		fmt.Printf("[ 32] %v\n", mi.File32URL)
+func (mi CSNMusicInfo) PrintLinks(prefix bool, opt int) {
+	if prefix == true {
+		if opt&MUSIC_QUAL_32 != 0 &&
+	        mi.File32URL != "" {
+			fmt.Printf("[ 32] %v\n", mi.File32URL)
+		}
+		if opt&MUSIC_QUAL_128 != 0 &&
+			mi.FileURL != "" {
+			fmt.Printf("[128] %v\n", mi.FileURL)
+		}
+		if opt&MUSIC_QUAL_320 != 0 &&
+			mi.File320URL != "" {
+			fmt.Printf("[320] %v\n", mi.File320URL)
+		}
+		if opt&MUSIC_QUAL_500 != 0 &&
+			mi.FileM4AURL != "" {
+			fmt.Printf("[500] %v\n", mi.FileM4AURL)
+		}
+		if opt&MUSIC_QUAL_1000 != 0 &&
+			mi.FileLosslessURL != "" {
+			fmt.Printf("[LLs] %v\n", mi.FileLosslessURL)
+		}
+	} else {
+		if opt&MUSIC_QUAL_32 != 0 &&
+	        mi.File32URL != "" {
+			fmt.Printf("%v\n", mi.File32URL)
+		}
+		if opt&MUSIC_QUAL_128 != 0 &&
+			mi.FileURL != "" {
+			fmt.Printf("%v\n", mi.FileURL)
+		}
+		if opt&MUSIC_QUAL_320 != 0 &&
+			mi.File320URL != "" {
+			fmt.Printf("%v\n", mi.File320URL)
+		}
+		if opt&MUSIC_QUAL_500 != 0 &&
+			mi.FileM4AURL != "" {
+			fmt.Printf("%v\n", mi.FileM4AURL)
+		}
+		if opt&MUSIC_QUAL_1000 != 0 &&
+			mi.FileLosslessURL != "" {
+			fmt.Printf("%v\n", mi.FileLosslessURL)
+		}
 	}
-	if opt&MUSIC_QUAL_128 != 0 &&
-		mi.FileURL != "" {
-		fmt.Printf("[128] %v\n", mi.FileURL)
-	}
-	if opt&MUSIC_QUAL_320 != 0 &&
-		mi.File320URL != "" {
-		fmt.Printf("[320] %v\n", mi.File320URL)
-	}
-	if opt&MUSIC_QUAL_500 != 0 &&
-		mi.FileM4AURL != "" {
-		fmt.Printf("[500] %v\n", mi.FileM4AURL)
-	}
-	if opt&MUSIC_QUAL_1000 != 0 &&
-		mi.FileLosslessURL != "" {
-		fmt.Printf("[LLs] %v\n", mi.FileLosslessURL)
-	}
+
 }
 
 func getInfo(id interface{}) (CSNMusicInfo, error) {

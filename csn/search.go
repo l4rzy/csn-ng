@@ -43,7 +43,7 @@ func doSearch(opt int, keyword string, limit int, link bool) {
 		r.Print()
 		if link {
 			info, _ := r.GetInfo()
-			info.PrintLinks(csn.MUSIC_QUAL_ALL)
+			info.PrintLinks(true, csn.MUSIC_QUAL_ALL)
 		}
 		fmt.Println("")
 	}

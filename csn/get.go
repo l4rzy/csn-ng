@@ -29,11 +29,29 @@ Examples:
 }
 
 func doGet(qual string, target string) {
+	var (
+		qopt int = 0
+	)
+	switch (qual) {
+	case "32":
+		qopt |= csn.MUSIC_QUAL_32
+	case "128":
+		qopt |= csn.MUSIC_QUAL_128
+	case "320":
+		qopt |= csn.MUSIC_QUAL_320
+	case "500":
+		qopt |= csn.MUSIC_QUAL_500
+	case "lossless":
+		qopt |= csn.MUSIC_QUAL_1000
+	case "all":
+		qopt |= csn.MUSIC_QUAL_ALL
+	}
+
 	info, err := csn.GetInfoUrl(target)
 
 	if err != nil {
 		fmt.Println(err)
 		fmt.Println("Also see https://github.com/l4rzy/csn-ng/issues/1")
 	}
-	info.PrintLinks(csn.MUSIC_QUAL_ALL)
+	info.PrintLinks(false, qopt)
 }
