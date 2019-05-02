@@ -1,8 +1,13 @@
 # Description
-* A shitty but working API and CLI tools for searching (and maybe more) on chiasenhac.vn
-* Please, just use it, don't look at the code
+* A A proper API library and CLI tools for chiasenhac.vn
+* Built around chiasenhac.vn JSON API
 
-## Build
+## Get and build
+* As a go library
+```sh
+$ go get -u 'github.com/l4rzy/csn-ng'
+```
+* As a cli application
 
 ```sh
 $ go get 'github.com/l4rzy/csn-ng/csn'
