@@ -28,18 +28,18 @@ Synopsis:
     %[1]s [flags]
 
 Available subcommands:
-    search      - search data on chiasenhac.vn
-    get         - get download links for song, album, playlist
+    search (s)     - search data on chiasenhac.vn
+    get    (g)     - get download links for song, album, playlist
 
 Available top-level flags:
-    --help      - show this help
-    --version   - show program version
+    --help         - show this help
+    --version      - show program version
 
 Examples:
     %[1]s search -limit 10 -album "linkin"
-    %[1]s search -album -music "love"
+    %[1]s s -album -music "love"
     %[1]s get -qual lossless https://chiasenhac.vn/nghe-album/...
-    %[1]s get https://chiasenhac.vn/nghe-album/...
+    %[1]s g https://chiasenhac.vn/nghe-album/...
 `, os.Args[0])
 	os.Exit(0)
 }
@@ -93,8 +93,7 @@ func main() {
 		}
 
 		if opt == 0 {
-			showHelp()
-			os.Exit(-1)
+			opt |= csn.KIND_MUSIC
 		}
 
 		if len(sub_search.Args()) == 0 {
@@ -137,13 +136,13 @@ func main() {
 	}
 
 	switch os.Args[1] {
-	case "search":
+	case "search", "s":
 		if len(os.Args) == 2 {
 			helpSearch()
 		}
 		sub_search.Parse(os.Args[2:])
 		cmdSearch()
-	case "get":
+	case "get", "g":
 		if len(os.Args) == 2 {
 			helpGet()
 		}

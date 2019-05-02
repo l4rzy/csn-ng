@@ -17,7 +17,7 @@ Synopsis:
     %[1]s search [flags] [input]
 
 Available flags:
-    --music         - search for music (I mean, songs)
+    --music         - search for music (songs, default mode)
     --video         - search for videos
     --artist        - search for artists
     --album         - search for albums
@@ -26,6 +26,7 @@ Available flags:
     --help          - show this help
 
 Examples:
+	%[1]s search --link "in the end"
     %[1]s search --limit 10 --music --link "what I've done"
     %[1]s search -album -music love
 `, os.Args[0])

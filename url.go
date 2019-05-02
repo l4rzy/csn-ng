@@ -71,6 +71,10 @@ func GetInfoUrl(url string) (CSNMusicInfo, error) {
     if err != nil {
         return ret, err
     }
+    if uinfo.Kind == KIND_ALBUM || uinfo.Kind == KIND_PLAYLIST {
+        err := errors.New("Currently doesn't support getting albums and playlists")
+        return ret, err
+    }
 
     sret, err := SearchNew(KIND_MUSIC|KIND_ALBUM|KIND_VIDEO, uinfo.UrlName, 10)
     for _, i := range sret {
