@@ -15,6 +15,7 @@ func helpGet() {
 	fmt.Printf(`csn get - get download links for song, album, playlist
 Synopsis:
     %[1]s get [flags] [input]
+    %[1]s g [flags] [input]
 
 Available flags:
     --qual [quality]    - max quality to print out (default to 'all')
@@ -22,7 +23,7 @@ Available flags:
     --help              - show this help
 
 Examples:
-    %[1]s get --qual lossless https://chiasenhac.vn/nghe-album/...
+    %[1]s g --qual lossless https://chiasenhac.vn/nghe-album/...
     %[1]s get --qual all https://vn.chiasenhac.vn/mp3/vietnam/v-pop/...
 `, os.Args[0])
 	os.Exit(0)

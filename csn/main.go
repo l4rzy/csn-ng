@@ -17,6 +17,7 @@ func showAbout() {
 	fmt.Printf(`csn - do things with chiasenhac.vn
 runtime: %s
 version: %v.%v.%v
+bug report: https://github.com/l4rzy/csn-ng/issues
 `, runtime.Version(), csn.VER_MAJOR, csn.VER_MINOR, csn.VER_PATCH)
 	os.Exit(0)
 }
