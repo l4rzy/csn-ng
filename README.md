@@ -30,11 +30,7 @@ func main() {
     for _, r := range result {
         r.Print()
         info, _ := r.GetInfo()
-        fmt.Printf("\t[128] %v\n", info.FileURL)
-        fmt.Printf("\t[320] %v\n", info.File320URL)
-        fmt.Printf("\t[500] %v\n", info.FileM4AURL)
-        fmt.Printf("\t[Lossless] %v\n", info.FileLosslessURL)
-        fmt.Println("")
+        info.PrintLinks(true, csn.MUSIC_QUAL_ALL)
     }
 }
 
