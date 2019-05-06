@@ -1,5 +1,5 @@
 # Description
-* A A proper API library and CLI tools for chiasenhac.vn
+* A proper API library and CLI tools for chiasenhac.vn
 * Built around chiasenhac.vn JSON API
 
 ## Get and build

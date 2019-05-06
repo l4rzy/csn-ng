@@ -20,6 +20,8 @@ Synopsis:
 Available flags:
     --qual [quality]    - max quality to print out (default to 'all')
                           either '32', '128', '320', '500', 'lossless' or 'all'
+    --album             - get link for all songs in the same album
+    --file              - treat input as file to read links, each link on a line
     --help              - show this help
 
 Examples:
@@ -42,7 +44,7 @@ func doGet(qual string, target string) {
 		qopt |= csn.MUSIC_QUAL_320
 	case "500":
 		qopt |= csn.MUSIC_QUAL_500
-	case "lossless":
+	case "lossless", "1000", "ll":
 		qopt |= csn.MUSIC_QUAL_1000
 	case "all":
 		qopt |= csn.MUSIC_QUAL_ALL

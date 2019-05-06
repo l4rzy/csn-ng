@@ -30,7 +30,7 @@ Synopsis:
 
 Available subcommands:
     search (s)     - search data on chiasenhac.vn
-    get    (g)     - get download links for song, album, playlist
+    get    (g)     - get download links for songs, videos, albums, playlists
 
 Available top-level flags:
     --help         - show this help
@@ -70,6 +70,7 @@ func main() {
 	var (
 		g_help    = sub_get.Bool("help", false, "show help for get")
 		g_quality = sub_get.String("qual", "320", "max quality to get")
+		g_batch   = sub_get.Bool("file", false, "read links from file")
 	)
 
 	// sub functions
@@ -108,6 +109,10 @@ func main() {
 	var cmdGet = func() {
 		if *g_help {
 			helpGet()
+		}
+		if *g_batch {
+			fmt.Println("Currently not available")
+			os.Exit(0)
 		}
 		if len(sub_get.Args()) == 0 {
 			helpGet()

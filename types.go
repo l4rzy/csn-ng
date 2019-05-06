@@ -102,7 +102,7 @@ type CSNMusicInfo struct {
 	FileM4AURL            string `json:"file_m4a_url"`
 	FileLosslessURL       string `json:"file_lossless_url"`
 	FullURL               string `json:"full_url"`
-	MusicGenre            string    `json:"music_genre"`
+	MusicGenre            string `json:"music_genre"`
 }
 
 type CSNVideoSearch struct {
@@ -256,4 +256,8 @@ type CSNObjectSearch interface {
 	GetLink() string
 	GetID() interface{}
 	GetInfo() (CSNMusicInfo, error)
+}
+
+type CSNObjectInfo interface {
+	PrintLinks(prefix bool, opt int)
 }

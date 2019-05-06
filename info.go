@@ -56,7 +56,6 @@ func (mi CSNMusicInfo) PrintLinks(prefix bool, opt int) {
 			fmt.Printf("%v\n", mi.FileLosslessURL)
 		}
 	}
-
 }
 
 func getInfo(id interface{}) (CSNMusicInfo, error) {
@@ -125,11 +124,11 @@ func (m CSNVideoSearch) GetLink() string {
 }
 
 func (m CSNArtistSearch) GetLink() string {
-	return m.ArtistLink
+	return CSN_HOME + m.ArtistLink
 }
 
 func (m CSNAlbumSearch) GetLink() string {
-	return m.AlbumLink
+	return CSN_HOME + m.AlbumLink
 }
 
 func (m CSNMusicSearch) GetID() interface{} {

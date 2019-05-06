@@ -6,6 +6,7 @@
 package csn
 
 import (
+    "fmt"
 	"strings"
     "errors"
 )
@@ -62,7 +63,7 @@ func extractUrlInfo(url string) (CSNUrlInfo, error) {
 	return ret, nil
 }
 
-func GetInfoUrl(url string) (CSNMusicInfo, error) {
+func GetInfoUrl(url string) (CSNObjectInfo, error) {
     var (
         ret CSNMusicInfo
         id interface{}
@@ -71,8 +72,8 @@ func GetInfoUrl(url string) (CSNMusicInfo, error) {
     if err != nil {
         return ret, err
     }
-    if uinfo.Kind == KIND_ALBUM || uinfo.Kind == KIND_PLAYLIST {
-        err := errors.New("Currently doesn't support getting albums and playlists")
+    if uinfo.Kind == KIND_PLAYLIST {
+        err := errors.New("Currently doesn't support getting playlists")
         return ret, err
     }
 
@@ -83,5 +84,35 @@ func GetInfoUrl(url string) (CSNMusicInfo, error) {
         }
     }
 
-    return getInfo(id)
+    switch uinfo.Kind {
+    case KIND_PLAYLIST:
+        err := errors.New("Currently doesn't support getting playlists")
+        return ret, err
+
+    case KIND_VIDEO, KIND_MUSIC:
+        sret, err := SearchNew(KIND_MUSIC|KIND_VIDEO, uinfo.UrlName, 10)
+        if err != nil {
+            return ret, err
+        }
+        for _, i := range sret {
+            if (i.GetLink() == uinfo.Url) {
+                id = i.GetID()
+            }
+        }
+
+        return getInfo(id)
+    case KIND_ALBUM:
+        sret, err := Search(uinfo.UrlName, 20)
+        fmt.Printf("%#v\n", sret)
+        if err != nil {
+            return ret, err
+        }
+        for _, i := range sret {
+            if (i.GetLink() == uinfo.Url) {
+                fmt.Printf("Found %#v\n", i)
+            }
+        }
+    }
+
+    return ret, nil
 }
