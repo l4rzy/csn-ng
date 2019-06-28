@@ -31,7 +31,7 @@ type CSNMusicSearchNew struct {
 	MusicID          int    `json:"music_id"`
 	MusicTitle       string `json:"music_title"`
 	MusicArtist      string `json:"music_artist"`
-	MusicBitrate     string `json:"music_bitrate"`
+	MusicBitrate     int    `json:"music_bitrate"`
 	MusicBitrateHTML string `json:"music_bitrate_html"`
 	MusicLink        string `json:"music_link"`
 	CatID            int    `json:"cat_id"`
@@ -51,7 +51,7 @@ type CSNMusicSearch struct {
 	MusicAlbum     string `json:"music_album"`
 	MusicYear      string `json:"music_year"`
 	MusicDownloads string `json:"music_downloads"`
-	MusicBitrate   string `json:"music_bitrate"`
+	MusicBitrate   int    `json:"music_bitrate"`
 	MusicLength    string `json:"music_length"`
 	MusicWidth     string `json:"music_width"`
 	MusicHeight    string `json:"music_height"`
@@ -80,7 +80,7 @@ type CSNMusicInfo struct {
 	MusicListen           string `json:"music_listen"`
 	MusicDownloads        string `json:"music_downloads"`
 	MusicTime             string `json:"music_time"`
-	MusicBitrate          string `json:"music_bitrate"`
+	MusicBitrate          int    `json:"music_bitrate"`
 	MusicLength           string `json:"music_length"`
 	Music32Filesize       string `json:"music_32_filesize"`
 	MusicFilesize         string `json:"music_filesize"`
@@ -109,11 +109,11 @@ type CSNVideoSearch struct {
 	VideoID         int         `json:"video_id"`
 	VideoTitle      string      `json:"video_title"`
 	VideoArtist     string      `json:"video_artist"`
-	VideoBitrate    string      `json:"video_bitrate"`
+	VideoBitrate    int         `json:"video_bitrate"`
 	VideoLink       string      `json:"video_link"`
 	VideoCover      string      `json:"video_cover"`
 	VideoListen     interface{} `json:"video_listen"`
-	VideoLength     string      `json:"video_length"`
+	VideoLength     int         `json:"video_length"`
 	VideoLengthHTML string      `json:"video_length_html"`
 	VideoDownloads  int         `json:"video_downloads"`
 	VideoTitleURL   string      `json:"video_title_url"`
@@ -188,7 +188,7 @@ type CSNMusicInfoResp struct {
 			MusicTitleURL   string `json:"music_title_url"`
 			MusicTitle      string `json:"music_title"`
 			MusicArtist     string `json:"music_artist"`
-			MusicBitrate    string `json:"music_bitrate"`
+			MusicBitrate    int    `json:"music_bitrate"`
 			MusicLength     string `json:"music_length"`
 			MusicWidth      string `json:"music_width"`
 			MusicHeight     string `json:"music_height"`
@@ -209,7 +209,7 @@ type CSNMusicInfoResp struct {
 			MusicArtist         string `json:"music_artist"`
 			MusicDownloads      string `json:"music_downloads"`
 			MusicListen         string `json:"music_listen"`
-			MusicBitrate        string `json:"music_bitrate"`
+			MusicBitrate        int    `json:"music_bitrate"`
 			MusicWidth          string `json:"music_width"`
 			MusicHeight         string `json:"music_height"`
 			MusicLength         string `json:"music_length"`
@@ -228,7 +228,7 @@ type CSNMusicInfoResp struct {
 			MusicTitleURL   string `json:"music_title_url"`
 			MusicTitle      string `json:"music_title"`
 			MusicArtist     string `json:"music_artist"`
-			MusicBitrate    string `json:"music_bitrate"`
+			MusicBitrate    int    `json:"music_bitrate"`
 			MusicLength     string `json:"music_length"`
 			MusicWidth      string `json:"music_width"`
 			MusicHeight     string `json:"music_height"`
