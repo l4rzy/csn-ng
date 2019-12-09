@@ -41,11 +41,13 @@ func doSearch(opt int, keyword string, limit int, link bool) {
 		os.Exit(-1)
 	}
 
+	//fmt.Printf("%#v\n", result)
+
 	for _, r := range result {
 		r.Print()
 		if link {
 			info, _ := r.GetInfo()
-			info.PrintLinks(true, csn.MUSIC_QUAL_ALL)
+			PrintLinks(info, true, csn.MUSIC_QUAL_ALL)
 		}
 		fmt.Println("")
 	}

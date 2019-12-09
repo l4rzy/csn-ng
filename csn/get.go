@@ -7,8 +7,8 @@ package main
 
 import (
 	"fmt"
-	"os"
 	csn "github.com/l4rzy/csn-ng"
+	"os"
 )
 
 func helpGet() {
@@ -35,7 +35,7 @@ func doGet(qual string, target string) {
 	var (
 		qopt int = 0
 	)
-	switch (qual) {
+	switch qual {
 	case "32":
 		qopt |= csn.MUSIC_QUAL_32
 	case "128":
@@ -56,5 +56,5 @@ func doGet(qual string, target string) {
 		fmt.Println(err)
 		fmt.Println("Also see https://github.com/l4rzy/csn-ng/issues/1")
 	}
-	info.PrintLinks(false, qopt)
+	PrintLinks(info, false, qopt)
 }

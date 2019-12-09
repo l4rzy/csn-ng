@@ -6,9 +6,9 @@
 package csn
 
 import (
-    "fmt"
-	"strings"
     "errors"
+    "fmt"
+    "strings"
 )
 
 func withSchemePrefix(url string) (CSNUrlInfo, error) {
@@ -34,7 +34,7 @@ func withSchemePrefix(url string) (CSNUrlInfo, error) {
 }
 
 func extractUrlInfo(url string) (CSNUrlInfo, error) {
-	var ret CSNUrlInfo
+    var ret CSNUrlInfo
     ret.Url = "https://" + url
     if strings.Contains(url, "old.chiasenhac.vn") {
         err := errors.New("doesn't support old site")
@@ -43,7 +43,7 @@ func extractUrlInfo(url string) (CSNUrlInfo, error) {
     if strings.HasPrefix(url, "https://") {
         return withSchemePrefix(url)
     }
-	toks := strings.Split(url, "/")
+    toks := strings.Split(url, "/")
 
     switch toks[1] {
     case "mp3":
@@ -60,13 +60,13 @@ func extractUrlInfo(url string) (CSNUrlInfo, error) {
         ret.Kind = KIND_PLAYLIST
         ret.UrlName = toks[2][:strings.LastIndex(toks[2], "~")]
     }
-	return ret, nil
+    return ret, nil
 }
 
-func GetInfoUrl(url string) (CSNObjectInfo, error) {
+func GetInfoUrl(url string) (CSNMusicInfo, error) {
     var (
         ret CSNMusicInfo
-        id interface{}
+        id  interface{}
     )
     uinfo, err := extractUrlInfo(url)
     if err != nil {
@@ -79,7 +79,7 @@ func GetInfoUrl(url string) (CSNObjectInfo, error) {
 
     sret, err := SearchNew(KIND_MUSIC|KIND_ALBUM|KIND_VIDEO, uinfo.UrlName, 10)
     for _, i := range sret {
-        if (i.GetLink() == uinfo.Url) {
+        if i.GetLink() == uinfo.Url {
             id = i.GetID()
         }
     }
@@ -95,7 +95,7 @@ func GetInfoUrl(url string) (CSNObjectInfo, error) {
             return ret, err
         }
         for _, i := range sret {
-            if (i.GetLink() == uinfo.Url) {
+            if i.GetLink() == uinfo.Url {
                 id = i.GetID()
             }
         }
@@ -108,7 +108,7 @@ func GetInfoUrl(url string) (CSNObjectInfo, error) {
             return ret, err
         }
         for _, i := range sret {
-            if (i.GetLink() == uinfo.Url) {
+            if i.GetLink() == uinfo.Url {
                 fmt.Printf("Found %#v\n", i)
             }
         }

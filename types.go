@@ -51,7 +51,7 @@ type CSNMusicSearch struct {
 	MusicAlbum     string `json:"music_album"`
 	MusicYear      string `json:"music_year"`
 	MusicDownloads string `json:"music_downloads"`
-	MusicBitrate   int    `json:"music_bitrate"`
+	MusicBitrate   string `json:"music_bitrate"`
 	MusicLength    string `json:"music_length"`
 	MusicWidth     string `json:"music_width"`
 	MusicHeight    string `json:"music_height"`
@@ -80,7 +80,7 @@ type CSNMusicInfo struct {
 	MusicListen           string `json:"music_listen"`
 	MusicDownloads        string `json:"music_downloads"`
 	MusicTime             string `json:"music_time"`
-	MusicBitrate          int    `json:"music_bitrate"`
+	MusicBitrate          string `json:"music_bitrate"`
 	MusicLength           string `json:"music_length"`
 	Music32Filesize       string `json:"music_32_filesize"`
 	MusicFilesize         string `json:"music_filesize"`
@@ -188,7 +188,7 @@ type CSNMusicInfoResp struct {
 			MusicTitleURL   string `json:"music_title_url"`
 			MusicTitle      string `json:"music_title"`
 			MusicArtist     string `json:"music_artist"`
-			MusicBitrate    int    `json:"music_bitrate"`
+			MusicBitrate    string `json:"music_bitrate"`
 			MusicLength     string `json:"music_length"`
 			MusicWidth      string `json:"music_width"`
 			MusicHeight     string `json:"music_height"`
@@ -209,7 +209,7 @@ type CSNMusicInfoResp struct {
 			MusicArtist         string `json:"music_artist"`
 			MusicDownloads      string `json:"music_downloads"`
 			MusicListen         string `json:"music_listen"`
-			MusicBitrate        int    `json:"music_bitrate"`
+			MusicBitrate        string `json:"music_bitrate"`
 			MusicWidth          string `json:"music_width"`
 			MusicHeight         string `json:"music_height"`
 			MusicLength         string `json:"music_length"`
@@ -228,7 +228,7 @@ type CSNMusicInfoResp struct {
 			MusicTitleURL   string `json:"music_title_url"`
 			MusicTitle      string `json:"music_title"`
 			MusicArtist     string `json:"music_artist"`
-			MusicBitrate    int    `json:"music_bitrate"`
+			MusicBitrate    string `json:"music_bitrate"`
 			MusicLength     string `json:"music_length"`
 			MusicWidth      string `json:"music_width"`
 			MusicHeight     string `json:"music_height"`
@@ -256,8 +256,4 @@ type CSNObjectSearch interface {
 	GetLink() string
 	GetID() interface{}
 	GetInfo() (CSNMusicInfo, error)
-}
-
-type CSNObjectInfo interface {
-	PrintLinks(prefix bool, opt int)
 }
