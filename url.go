@@ -102,8 +102,8 @@ func GetInfoUrl(url string) (CSNMusicInfo, error) {
 
         return getInfo(id)
     case KIND_ALBUM:
-        sret, err := Search(uinfo.UrlName, 20)
-        fmt.Printf("%#v\n", sret)
+        sret, err := SearchNew(KIND_ALBUM, uinfo.UrlName, 20)
+        //fmt.Printf("%#v\n", sret)
         if err != nil {
             return ret, err
         }

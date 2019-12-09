@@ -13,7 +13,7 @@ import (
 const (
 	VER_MAJOR = 0
 	VER_MINOR = 1
-	VER_PATCH = 2
+	VER_PATCH = 3
 )
 
 var (
