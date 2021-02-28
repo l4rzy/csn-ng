@@ -23,10 +23,10 @@ var (
 
 // search options
 const (
-	KIND_MUSIC  = 1 << 1
-	KIND_VIDEO  = 1 << 2
-	KIND_ARTIST = 1 << 3
-	KIND_ALBUM  = 1 << 4
+	KIND_MUSIC    = 1 << 1
+	KIND_VIDEO    = 1 << 2
+	KIND_ARTIST   = 1 << 3
+	KIND_ALBUM    = 1 << 4
 	KIND_PLAYLIST = 1 << 5
 )
 
