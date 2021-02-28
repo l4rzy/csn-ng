@@ -146,7 +146,7 @@ type CSNSearchNewResp []struct {
 	Q     string `json:"q"`
 	Music struct {
 		Data     []CSNMusicSearchNew `json:"data"`
-		Rows     string              `json:"rows"`
+		Rows     int                 `json:"rows"`
 		Page     int                 `json:"page"`
 		RowTotal int                 `json:"row_total"`
 	} `json:"music"`
@@ -158,13 +158,13 @@ type CSNSearchNewResp []struct {
 	} `json:"music_playback"`
 	Video struct {
 		Data     []CSNVideoSearch `json:"data"`
-		Rows     string           `json:"rows"`
+		Rows     int              `json:"rows"`
 		Page     int              `json:"page"`
 		RowTotal int              `json:"row_total"`
 	} `json:"video"`
 	Artist struct {
 		Data     []CSNArtistSearch `json:"data"`
-		Rows     string            `json:"rows"`
+		Rows     int               `json:"rows"`
 		Page     int               `json:"page"`
 		RowTotal int               `json:"row_total"`
 	} `json:"artist"`
