@@ -170,7 +170,7 @@ type CSNSearchNewResp []struct {
 	} `json:"artist"`
 	Album struct {
 		Data     []CSNAlbumSearch `json:"data"`
-		Rows     string           `json:"rows"`
+		Rows     int              `json:"rows"`
 		Page     int              `json:"page"`
 		RowTotal int              `json:"row_total"`
 	} `json:"album"`
