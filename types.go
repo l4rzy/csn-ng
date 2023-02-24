@@ -14,7 +14,7 @@ type MusicBase struct {
 }
 
 type MusicHot struct {
-    MusicBase
+	MusicBase
 	CatLevel        string `json:"cat_level"`
 	CoverID         string `json:"cover_id"`
 	MusicDownloads  string `json:"music_downloads"`
@@ -42,7 +42,7 @@ type MusicSearchNew struct {
 }
 
 type MusicSearch struct {
-    MusicBase
+	MusicBase
 	ID             int    `json:"id"`
 	Thumbnail      string `json:"thumbnail"`
 	Preview        string `json:"preview"`
@@ -59,7 +59,7 @@ type MusicSearch struct {
 }
 
 type MusicAlbum struct {
-    MusicBase
+	MusicBase
 	CatLevel        string `json:"cat_level"`
 	CatCustom       string `json:"cat_custom"`
 	MusicTrackID    string `json:"music_track_id"`
@@ -68,7 +68,7 @@ type MusicAlbum struct {
 }
 
 type MusicInfo struct {
-    MusicBase
+	MusicBase
 	CatLevel              string `json:"cat_level"`
 	CatSublevel           string `json:"cat_sublevel"`
 	CoverID               string `json:"cover_id"`
@@ -147,8 +147,8 @@ type CSNSearchNewResp []struct {
 	Music struct {
 		Data     []MusicSearchNew `json:"data"`
 		Rows     int              `json:"rows"`
-		Page     int                 `json:"page"`
-		RowTotal int                 `json:"row_total"`
+		Page     int              `json:"page"`
+		RowTotal int              `json:"row_total"`
 	} `json:"music"`
 	MusicPlayback struct {
 		Data     []interface{} `json:"data"`
@@ -159,20 +159,20 @@ type CSNSearchNewResp []struct {
 	Video struct {
 		Data     []VideoSearch `json:"data"`
 		Rows     int           `json:"rows"`
-		Page     int              `json:"page"`
-		RowTotal int              `json:"row_total"`
+		Page     int           `json:"page"`
+		RowTotal int           `json:"row_total"`
 	} `json:"video"`
 	Artist struct {
 		Data     []ArtistSearch `json:"data"`
 		Rows     int            `json:"rows"`
-		Page     int               `json:"page"`
-		RowTotal int               `json:"row_total"`
+		Page     int            `json:"page"`
+		RowTotal int            `json:"row_total"`
 	} `json:"artist"`
 	Album struct {
 		Data     []AlbumSearch `json:"data"`
 		Rows     int           `json:"rows"`
-		Page     int              `json:"page"`
-		RowTotal int              `json:"row_total"`
+		Page     int           `json:"page"`
+		RowTotal int           `json:"row_total"`
 	} `json:"album"`
 }
 
