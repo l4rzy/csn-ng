@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 l4rzy
+ * Copyright (C) 2023 l4rzy
  * MIT License
  */
 
@@ -11,30 +11,30 @@ import (
 	"strings"
 )
 
-func withSchemePrefix(url string) (CSNUrlInfo, error) {
-	var ret CSNUrlInfo
+func withSchemePrefix(url string) (UrlInfo, error) {
+	var ret UrlInfo
 	ret.Url = url
 
 	toks := strings.Split(url, "/")
 
 	switch toks[3] {
 	case "mp3":
-		ret.Kind = KIND_MUSIC
+		ret.Kind = KindMusic
 		ret.UrlName = toks[6][:strings.LastIndex(toks[6], "~")]
 		ret.Category = toks[4]
 	case "nghe-album":
-		ret.Kind = KIND_ALBUM
+		ret.Kind = KindAlbum
 		ret.UrlName = toks[4][:strings.LastIndex(toks[4], "~")]
 	case "hd":
-		ret.Kind = KIND_VIDEO
+		ret.Kind = KindVideo
 		ret.UrlName = toks[6][:strings.LastIndex(toks[6], "~")]
 	}
 
 	return ret, nil
 }
 
-func extractUrlInfo(url string) (CSNUrlInfo, error) {
-	var ret CSNUrlInfo
+func extractUrlInfo(url string) (UrlInfo, error) {
+	var ret UrlInfo
 	ret.Url = "https://" + url
 	if strings.Contains(url, "old.chiasenhac.vn") {
 		err := errors.New("doesn't support old site")
@@ -47,37 +47,37 @@ func extractUrlInfo(url string) (CSNUrlInfo, error) {
 
 	switch toks[1] {
 	case "mp3":
-		ret.Kind = KIND_MUSIC
+		ret.Kind = KindMusic
 		ret.UrlName = toks[4][:strings.LastIndex(toks[4], "~")]
 		ret.Category = toks[2]
 	case "nghe-album":
-		ret.Kind = KIND_ALBUM
+		ret.Kind = KindAlbum
 		ret.UrlName = toks[2][:strings.LastIndex(toks[2], "~")]
 	case "hd":
-		ret.Kind = KIND_VIDEO
+		ret.Kind = KindVideo
 		ret.UrlName = toks[4][:strings.LastIndex(toks[4], "~")]
 	case "playlist":
-		ret.Kind = KIND_PLAYLIST
+		ret.Kind = KindPlaylist
 		ret.UrlName = toks[2][:strings.LastIndex(toks[2], "~")]
 	}
 	return ret, nil
 }
 
-func GetInfoUrl(url string) (CSNMusicInfo, error) {
+func GetInfoUrl(url string) (MusicInfo, error) {
 	var (
-		ret CSNMusicInfo
+		ret MusicInfo
 		id  interface{}
 	)
 	uinfo, err := extractUrlInfo(url)
 	if err != nil {
 		return ret, err
 	}
-	if uinfo.Kind == KIND_PLAYLIST {
+	if uinfo.Kind == KindPlaylist {
 		err := errors.New("Currently doesn't support getting playlists")
 		return ret, err
 	}
 
-	sret, err := SearchNew(KIND_MUSIC|KIND_ALBUM|KIND_VIDEO, uinfo.UrlName, 10)
+	sret, err := SearchNew(KindMusic|KindAlbum|KindVideo, uinfo.UrlName, 10)
 	for _, i := range sret {
 		if i.GetLink() == uinfo.Url {
 			id = i.GetID()
@@ -85,12 +85,12 @@ func GetInfoUrl(url string) (CSNMusicInfo, error) {
 	}
 
 	switch uinfo.Kind {
-	case KIND_PLAYLIST:
+	case KindPlaylist:
 		err := errors.New("Currently doesn't support getting playlists")
 		return ret, err
 
-	case KIND_VIDEO, KIND_MUSIC:
-		sret, err := SearchNew(KIND_MUSIC|KIND_VIDEO, uinfo.UrlName, 10)
+	case KindVideo, KindMusic:
+		sret, err := SearchNew(KindMusic|KindVideo, uinfo.UrlName, 10)
 		if err != nil {
 			return ret, err
 		}
@@ -101,8 +101,8 @@ func GetInfoUrl(url string) (CSNMusicInfo, error) {
 		}
 
 		return getInfo(id)
-	case KIND_ALBUM:
-		sret, err := SearchNew(KIND_ALBUM, uinfo.UrlName, 20)
+	case KindAlbum:
+		sret, err := SearchNew(KindAlbum, uinfo.UrlName, 20)
 		//fmt.Printf("%#v\n", sret)
 		if err != nil {
 			return ret, err

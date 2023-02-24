@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 l4rzy
+ * Copyright (C) 2023 l4rzy
  * MIT License
  */
 
@@ -18,7 +18,7 @@ func showAbout() {
 runtime: %s
 version: %v.%v.%v
 bug report: https://github.com/l4rzy/csn-ng/issues
-`, runtime.Version(), csn.VER_MAJOR, csn.VER_MINOR, csn.VER_PATCH)
+`, runtime.Version(), csn.VerMajor, csn.VerMinor, csn.VerPatch)
 	os.Exit(0)
 }
 
@@ -49,90 +49,90 @@ func main() {
 
 	// top level flags and subcommands
 	var (
-		sub_search = flag.NewFlagSet("search", flag.ExitOnError)
-		sub_get    = flag.NewFlagSet("get", flag.ExitOnError)
-		p_about    = flag.Bool("version", false, "show program info")
-		p_help     = flag.Bool("help", false, "show help")
+		subSearch = flag.NewFlagSet("search", flag.ExitOnError)
+		subGet = flag.NewFlagSet("get", flag.ExitOnError)
+		pAbout = flag.Bool("version", false, "show program info")
+		pHelp  = flag.Bool("help", false, "show help")
 	)
 
 	// flags for search
 	var (
-		s_help   = sub_search.Bool("help", false, "show help for search")
-		s_music  = sub_search.Bool("music", false, "search for music")
-		s_video  = sub_search.Bool("video", false, "search for video")
-		s_artist = sub_search.Bool("artist", false, "search for artist")
-		s_album  = sub_search.Bool("album", false, "search for album")
-		s_link   = sub_search.Bool("link", false, "also get the download links of music")
-		s_limit  = sub_search.Int("limit", 5, "limit search result on each category")
+		sHelp   = subSearch.Bool("help", false, "show help for search")
+		sMusic   = subSearch.Bool("music", false, "search for music")
+		sVideo  = subSearch.Bool("video", false, "search for video")
+		sArtist = subSearch.Bool("artist", false, "search for artist")
+		sAlbum  = subSearch.Bool("album", false, "search for album")
+		sLink  = subSearch.Bool("link", false, "also get the download links of music")
+		sLimit = subSearch.Int("limit", 5, "limit search result on each category")
 	)
 
 	// flags for get
 	var (
-		g_help    = sub_get.Bool("help", false, "show help for get")
-		g_quality = sub_get.String("qual", "320", "max quality to get")
-		g_batch   = sub_get.Bool("file", false, "read links from file")
+		gHelp    = subGet.Bool("help", false, "show help for get")
+		gQuality = subGet.String("qual", "320", "max quality to get")
+		gBatch   = subGet.Bool("file", false, "read links from file")
 	)
 
 	// sub functions
 	var cmdSearch = func() {
-		if *s_help {
+		if *sHelp {
 			helpSearch()
 		}
 
 		// construct option
 		var opt = 0
-		if *s_music {
-			opt |= csn.KIND_MUSIC
+		if *sMusic {
+			opt |= csn.KindMusic
 		}
-		if *s_video {
-			opt |= csn.KIND_VIDEO
+		if *sVideo {
+			opt |= csn.KindVideo
 		}
-		if *s_artist {
-			opt |= csn.KIND_ARTIST
+		if *sArtist {
+			opt |= csn.KindArtist
 		}
-		if *s_album {
-			opt |= csn.KIND_ALBUM
+		if *sAlbum {
+			opt |= csn.KindAlbum
 		}
 
 		if opt == 0 {
-			opt |= csn.KIND_MUSIC
+			opt |= csn.KindMusic
 		}
 
-		if len(sub_search.Args()) == 0 {
+		if len(subSearch.Args()) == 0 {
 			helpSearch()
 		}
 
-		var keyword = sub_search.Args()[0]
-		doSearch(opt, keyword, *s_limit, *s_link)
+		var keyword = subSearch.Args()[0]
+		doSearch(opt, keyword, *sLimit, *sLink)
 	}
 
 	var cmdGet = func() {
-		if *g_help {
+		if *gHelp {
 			helpGet()
 		}
-		if *g_batch {
+		if *gBatch {
 			fmt.Println("Currently not available")
 			os.Exit(0)
 		}
-		if len(sub_get.Args()) == 0 {
+		if len(subGet.Args()) == 0 {
 			helpGet()
 		}
 
-		var target = sub_get.Args()[0]
-		doGet(*g_quality, target)
+		var target = subGet.Args()[0]
+		doGet(*gQuality, target)
 	}
 
 	// override usages
 	flag.Usage = showHelp
-	sub_search.Usage = helpSearch
-	sub_get.Usage = helpGet
+	subSearch.Usage = helpSearch
+	subGet.Usage = helpGet
 
 	flag.Parse()
-	if *p_about {
+	if *pAbout {
 		showAbout()
 	}
 
-	if *p_help {
+	if *pHelp {
 		showHelp()
 	}
 
@@ -146,13 +146,13 @@ func main() {
 		if len(os.Args) == 2 {
 			helpSearch()
 		}
-		sub_search.Parse(os.Args[2:])
+		subSearch.Parse(os.Args[2:])
 		cmdSearch()
 	case "get", "g":
 		if len(os.Args) == 2 {
 			helpGet()
 		}
-		sub_get.Parse(os.Args[2:])
+		subGet.Parse(os.Args[2:])
 		cmdGet()
 	default:
 		showHelp()

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 l4rzy
+ * Copyright (C) 2023 l4rzy
  * MIT License
  */
 
@@ -34,46 +34,46 @@ Examples:
 	os.Exit(0)
 }
 
-func PrintLinks(mi csn.CSNMusicInfo, prefix bool, opt int) {
+func PrintLinks(mi csn.MusicInfo, prefix bool, opt int) {
 	if prefix == true {
-		if opt&csn.MUSIC_QUAL_32 != 0 &&
+		if opt&csn.MusicQual32 != 0 &&
 			mi.File32URL != "" {
 			fmt.Printf("[ 32] %v\n", mi.File32URL)
 		}
-		if opt&csn.MUSIC_QUAL_128 != 0 &&
+		if opt&csn.MusicQual128 != 0 &&
 			mi.FileURL != "" {
 			fmt.Printf("[128] %v\n", mi.FileURL)
 		}
-		if opt&csn.MUSIC_QUAL_320 != 0 &&
+		if opt&csn.MusicQual320 != 0 &&
 			mi.File320URL != "" {
 			fmt.Printf("[320] %v\n", mi.File320URL)
 		}
-		if opt&csn.MUSIC_QUAL_500 != 0 &&
+		if opt&csn.MusicQual500 != 0 &&
 			mi.FileM4AURL != "" {
 			fmt.Printf("[500] %v\n", mi.FileM4AURL)
 		}
-		if opt&csn.MUSIC_QUAL_1000 != 0 &&
+		if opt&csn.MusicQual1000 != 0 &&
 			mi.FileLosslessURL != "" {
 			fmt.Printf("[LLs] %v\n", mi.FileLosslessURL)
 		}
 	} else {
-		if opt&csn.MUSIC_QUAL_32 != 0 &&
+		if opt&csn.MusicQual32 != 0 &&
 			mi.File32URL != "" {
 			fmt.Printf("%v\n", mi.File32URL)
 		}
-		if opt&csn.MUSIC_QUAL_128 != 0 &&
+		if opt&csn.MusicQual128 != 0 &&
 			mi.FileURL != "" {
 			fmt.Printf("%v\n", mi.FileURL)
 		}
-		if opt&csn.MUSIC_QUAL_320 != 0 &&
+		if opt&csn.MusicQual320 != 0 &&
 			mi.File320URL != "" {
 			fmt.Printf("%v\n", mi.File320URL)
 		}
-		if opt&csn.MUSIC_QUAL_500 != 0 &&
+		if opt&csn.MusicQual500 != 0 &&
 			mi.FileM4AURL != "" {
 			fmt.Printf("%v\n", mi.FileM4AURL)
 		}
-		if opt&csn.MUSIC_QUAL_1000 != 0 &&
+		if opt&csn.MusicQual1000 != 0 &&
 			mi.FileLosslessURL != "" {
 			fmt.Printf("%v\n", mi.FileLosslessURL)
 		}
@@ -87,13 +87,11 @@ func doSearch(opt int, keyword string, limit int, link bool) {
 		os.Exit(-1)
 	}
 
-	//fmt.Printf("%#v\n", result)
-
 	for _, r := range result {
 		r.Print()
 		if link {
 			info, _ := r.GetInfo()
-			PrintLinks(info, true, csn.MUSIC_QUAL_ALL)
+			PrintLinks(info, true, csn.MusicQualAll)
 		}
 		fmt.Println("")
 	}

@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2019 l4rzy
+ * Copyright (C) 2023 l4rzy
  * MIT License
  */
 
 package csn
 
-type CSNMusicBase struct {
+type MusicBase struct {
 	MusicTitleURL string `json:"music_title_url"`
 	MusicID       string `json:"music_id"`
 	CatID         string `json:"cat_id"`
@@ -13,8 +13,8 @@ type CSNMusicBase struct {
 	MusicArtist   string `json:"music_artist"`
 }
 
-type CSNMusicHot struct {
-	CSNMusicBase
+type MusicHot struct {
+    MusicBase
 	CatLevel        string `json:"cat_level"`
 	CoverID         string `json:"cover_id"`
 	MusicDownloads  string `json:"music_downloads"`
@@ -26,7 +26,7 @@ type CSNMusicHot struct {
 
 // new search api that bases on the
 // new site's xhr
-type CSNMusicSearchNew struct {
+type MusicSearchNew struct {
 	MusicDownloads   int    `json:"music_downloads"`
 	MusicID          int    `json:"music_id"`
 	MusicTitle       string `json:"music_title"`
@@ -41,8 +41,8 @@ type CSNMusicSearchNew struct {
 	MusicTitleURL    string `json:"music_title_url"`
 }
 
-type CSNMusicSearch struct {
-	CSNMusicBase
+type MusicSearch struct {
+    MusicBase
 	ID             int    `json:"id"`
 	Thumbnail      string `json:"thumbnail"`
 	Preview        string `json:"preview"`
@@ -58,8 +58,8 @@ type CSNMusicSearch struct {
 	CoverImg       string `json:"cover_img"`
 }
 
-type CSNMusicAlbum struct {
-	CSNMusicBase
+type MusicAlbum struct {
+    MusicBase
 	CatLevel        string `json:"cat_level"`
 	CatCustom       string `json:"cat_custom"`
 	MusicTrackID    string `json:"music_track_id"`
@@ -67,8 +67,8 @@ type CSNMusicAlbum struct {
 	MusicLength     string `json:"music_length"`
 }
 
-type CSNMusicInfo struct {
-	CSNMusicBase
+type MusicInfo struct {
+    MusicBase
 	CatLevel              string `json:"cat_level"`
 	CatSublevel           string `json:"cat_sublevel"`
 	CoverID               string `json:"cover_id"`
@@ -105,7 +105,7 @@ type CSNMusicInfo struct {
 	MusicGenre            string `json:"music_genre"`
 }
 
-type CSNVideoSearch struct {
+type VideoSearch struct {
 	VideoID         int         `json:"video_id"`
 	VideoTitle      string      `json:"video_title"`
 	VideoArtist     string      `json:"video_artist"`
@@ -119,7 +119,7 @@ type CSNVideoSearch struct {
 	VideoTitleURL   string      `json:"video_title_url"`
 }
 
-type CSNArtistSearch struct {
+type ArtistSearch struct {
 	ArtistID       int    `json:"artist_id"`
 	ArtistNickname string `json:"artist_nickname"`
 	ArtistLink     string `json:"artist_link"`
@@ -127,7 +127,7 @@ type CSNArtistSearch struct {
 	ArtistAvatar   string `json:"artist_avatar"`
 }
 
-type CSNAlbumSearch struct {
+type AlbumSearch struct {
 	CoverID         int         `json:"cover_id"`
 	MusicAlbum      string      `json:"music_album"`
 	AlbumLink       string      `json:"album_link"`
@@ -139,14 +139,14 @@ type CSNAlbumSearch struct {
 }
 
 type CSNSearchResp struct {
-	MusicList []CSNMusicSearch `json:"music_list"`
+	MusicList []MusicSearch `json:"music_list"`
 }
 
 type CSNSearchNewResp []struct {
 	Q     string `json:"q"`
 	Music struct {
-		Data     []CSNMusicSearchNew `json:"data"`
-		Rows     int                 `json:"rows"`
+		Data     []MusicSearchNew `json:"data"`
+		Rows     int              `json:"rows"`
 		Page     int                 `json:"page"`
 		RowTotal int                 `json:"row_total"`
 	} `json:"music"`
@@ -157,28 +157,28 @@ type CSNSearchNewResp []struct {
 		RowTotal int           `json:"row_total"`
 	} `json:"music_playback"`
 	Video struct {
-		Data     []CSNVideoSearch `json:"data"`
-		Rows     int              `json:"rows"`
+		Data     []VideoSearch `json:"data"`
+		Rows     int           `json:"rows"`
 		Page     int              `json:"page"`
 		RowTotal int              `json:"row_total"`
 	} `json:"video"`
 	Artist struct {
-		Data     []CSNArtistSearch `json:"data"`
-		Rows     int               `json:"rows"`
+		Data     []ArtistSearch `json:"data"`
+		Rows     int            `json:"rows"`
 		Page     int               `json:"page"`
 		RowTotal int               `json:"row_total"`
 	} `json:"artist"`
 	Album struct {
-		Data     []CSNAlbumSearch `json:"data"`
-		Rows     int              `json:"rows"`
+		Data     []AlbumSearch `json:"data"`
+		Rows     int           `json:"rows"`
 		Page     int              `json:"page"`
 		RowTotal int              `json:"row_total"`
 	} `json:"album"`
 }
 
-type CSNMusicInfoResp struct {
-	MusicInfo CSNMusicInfo    `json:"music_info"`
-	TrackList []CSNMusicAlbum `json:"track_list"`
+type MusicInfoResp struct {
+	MusicInfo MusicInfo    `json:"music_info"`
+	TrackList []MusicAlbum `json:"track_list"`
 	Related   struct {
 		MusicTotal int `json:"music_total"`
 		MusicList  []struct {
@@ -243,7 +243,7 @@ type DlAble struct {
 	Link map[string]string
 }
 
-type CSNUrlInfo struct {
+type UrlInfo struct {
 	Url      string
 	Kind     int
 	Category string
@@ -251,9 +251,9 @@ type CSNUrlInfo struct {
 }
 
 // interface
-type CSNObjectSearch interface {
+type ObjectSearch interface {
 	Print()
 	GetLink() string
 	GetID() interface{}
-	GetInfo() (CSNMusicInfo, error)
+	GetInfo() (MusicInfo, error)
 }

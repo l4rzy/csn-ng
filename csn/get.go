@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 l4rzy
+ * Copyright (C) 2023 l4rzy
  * MIT License
  */
 
@@ -37,17 +37,17 @@ func doGet(qual string, target string) {
 	)
 	switch qual {
 	case "32":
-		qopt |= csn.MUSIC_QUAL_32
+		qopt |= csn.MusicQual32
 	case "128":
-		qopt |= csn.MUSIC_QUAL_128
+		qopt |= csn.MusicQual128
 	case "320":
-		qopt |= csn.MUSIC_QUAL_320
+		qopt |= csn.MusicQual320
 	case "500":
-		qopt |= csn.MUSIC_QUAL_500
+		qopt |= csn.MusicQual500
 	case "lossless", "1000", "ll":
-		qopt |= csn.MUSIC_QUAL_1000
+		qopt |= csn.MusicQual1000
 	case "all":
-		qopt |= csn.MUSIC_QUAL_ALL
+		qopt |= csn.MusicQualAll
 	}
 
 	info, err := csn.GetInfoUrl(target)

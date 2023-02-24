@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 l4rzy
+ * Copyright (C) 2023 l4rzy
  * MIT License
  */
 
@@ -9,27 +9,27 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 )
 
-func getInfo(id interface{}) (CSNMusicInfo, error) {
-	var ret CSNMusicInfoResp
-	surl := fmt.Sprintf(MUSIC_INFO_FMT, id)
+func getInfo(id interface{}) (MusicInfo, error) {
+	var ret MusicInfoResp
+	surl := fmt.Sprintf(MusicInfoFmt, id)
 
 	// get data
-	resp, err := csn_client.Get(surl)
+	resp, err := csnClient.Get(surl)
 	if err != nil {
 		return ret.MusicInfo, err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		err = errors.New("Responsed status code is not ok")
+		err = errors.New("responsed status code is not ok")
 		return ret.MusicInfo, err
 	}
 
 	// read to body
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return ret.MusicInfo, err
 	}
@@ -44,62 +44,62 @@ func getInfo(id interface{}) (CSNMusicInfo, error) {
 	return ret.MusicInfo, nil
 }
 
-func (m CSNMusicSearch) GetInfo() (CSNMusicInfo, error) {
+func (m MusicSearch) GetInfo() (MusicInfo, error) {
 	return getInfo(m.MusicID)
 }
 
-func (m CSNMusicSearchNew) GetInfo() (CSNMusicInfo, error) {
+func (m MusicSearchNew) GetInfo() (MusicInfo, error) {
 	return getInfo(m.MusicID)
 }
 
-func (v CSNVideoSearch) GetInfo() (CSNMusicInfo, error) {
-	return CSNMusicInfo{}, nil
+func (v VideoSearch) GetInfo() (MusicInfo, error) {
+	return MusicInfo{}, nil
 }
 
-func (a CSNArtistSearch) GetInfo() (CSNMusicInfo, error) {
-	return CSNMusicInfo{}, nil
+func (a ArtistSearch) GetInfo() (MusicInfo, error) {
+	return MusicInfo{}, nil
 }
 
-func (a CSNAlbumSearch) GetInfo() (CSNMusicInfo, error) {
-	return CSNMusicInfo{}, nil
+func (a AlbumSearch) GetInfo() (MusicInfo, error) {
+	return MusicInfo{}, nil
 }
 
-func (m CSNMusicSearch) GetLink() string {
+func (m MusicSearch) GetLink() string {
 	return ""
 }
 
-func (m CSNMusicSearchNew) GetLink() string {
+func (m MusicSearchNew) GetLink() string {
 	return m.MusicLink
 }
 
-func (m CSNVideoSearch) GetLink() string {
+func (m VideoSearch) GetLink() string {
 	return m.VideoLink
 }
 
-func (m CSNArtistSearch) GetLink() string {
-	return CSN_HOME + m.ArtistLink
+func (m ArtistSearch) GetLink() string {
+	return Home + m.ArtistLink
 }
 
-func (m CSNAlbumSearch) GetLink() string {
-	return CSN_HOME + m.AlbumLink
+func (m AlbumSearch) GetLink() string {
+	return Home + m.AlbumLink
 }
 
-func (m CSNMusicSearch) GetID() interface{} {
+func (m MusicSearch) GetID() interface{} {
 	return m.MusicID
 }
 
-func (m CSNMusicSearchNew) GetID() interface{} {
+func (m MusicSearchNew) GetID() interface{} {
 	return m.MusicID
 }
 
-func (m CSNVideoSearch) GetID() interface{} {
+func (m VideoSearch) GetID() interface{} {
 	return m.VideoID
 }
 
-func (m CSNArtistSearch) GetID() interface{} {
+func (m ArtistSearch) GetID() interface{} {
 	return m.ArtistID
 }
 
-func (m CSNAlbumSearch) GetID() interface{} {
+func (m AlbumSearch) GetID() interface{} {
 	return m.AlbumID
 }

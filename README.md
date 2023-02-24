@@ -10,7 +10,7 @@ $ go get -u 'github.com/l4rzy/csn-ng'
 * As a cli application
 
 ```sh
-$ go get 'github.com/l4rzy/csn-ng/csn'
+$ go install 'github.com/l4rzy/csn-ng/csn@latest'
 ```
 
 ## Usage
